@@ -42,7 +42,7 @@ function winGame() {
   RightOrWrong.textContent = "Right Letter";
   RightOrWrong.classList.remove("wrong");
   RightOrWrong.classList.add("Right");
-  playAgainWindow.computedStyleMap.display = "flex";
+  playAgainWindow.style.display = "flex";
   letterToGuess.textContent = letterToFind; //?
   letterToGuess.classList.add("guess-right-letter");
   isGameWon = true;
@@ -58,11 +58,17 @@ function winGame() {
 // return
 // after the if, but in the wrong guess function: eqaute the the guesses text content to = `${letters}, ${key};
 function wrongGuess(key) {
-  letterToGuess = guesses.textContent; //?
+  const letters = guesses.textContent; //?
   rightOrWrong.classList.remove("right");
   rightOrWrong.classList.add("wrong");
   if (alreadyPickedLetters.includes(key)) {
     rightOrWrong.textContent = `Nope, already guessed ${key}`;
+    return;
+  }
+  rightOrWrong.textContent = "Nope, Wrong letter";
+  alreadyPickedLetters.push(key);
+  if (letters === "") {
+    guesses.textContent = `${key}`;
     return;
   }
   guesses.textContent = `${letters}, ${key}`;
@@ -88,7 +94,7 @@ function resetGame() {
   letterToFind = getRandomChar();
   rightOrWrong.classList.remove("wrong");
   rightOrWrong.classList.remove("right");
-  playAgainWindow.computedStyleMap.display = "none";
+  playAgainWindow.style.display = "none";
   letterToGuess.textContent = "?";
   rightOrWrong.textContent = "Guess a Letter";
   guesses.textContent = "";
@@ -101,7 +107,9 @@ letterToFind = getRandomChar();
 
 // add an event listener to the reset button
 // once its click call the rest game function
-resetButton.addEventListener("click", resetGame());
+resetButton.addEventListener("click", () => {
+  resetGame();
+});
 
 // to the window add an event listener function keyup action
 // put event inside the function parameter
