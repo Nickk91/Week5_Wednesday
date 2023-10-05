@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #photo {
+        margin-top: 100px;
+
+        display: none;
+      }
+      #photo.process {
+        background: url("./media/640.png");
+        display: block;
+        height: 200px;
+        width: 300px;
+        background-size: auto 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Show Checkbox</h1>
+
+    <form>
+      <input type="checkbox" id="checkbox" name="showpic" />
+      <label for="checkbox"> Display Photo</label><br />
+
+      <div id="photo"></div>
+      <!-- <input type="submit" value="Submit"> -->
+    </form>
+
+    <script>
+      let checkbox = document.getElementById("checkbox");
+      let photo = document.getElementById("photo");
+      console.log(checkbox.checked);
+
+      if (checkbox.checked === true) {
+      }
+
+      checkbox.addEventListener("change", function (e) {
+        photo.classList.toggle("process");
+      });
+
+      function toggleVisibility(photo) {
+        if (checkbox.checked === true) {
+          photo.style.display = "none";
+          //   photo.style.display = "hidden";
+          // } else {
+          //   photo.style.display = "visible";
+        }
+      }
+    </script>
+  </body>
+</html>

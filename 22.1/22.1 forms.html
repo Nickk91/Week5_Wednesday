@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #myForm {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: auto;
+        gap: 20px;
+        border: 1px solid gray;
+        padding: 40px;
+      }
+
+      #displayedData {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        /* margin: auto; */
+      }
+    </style>
+  </head>
+  <body>
+    <form id="myForm">
+      <label for="fname">First name:</label><br />
+      <input type="text" id="fnameInput" name="fname" /><br />
+      <label for="lname">Last name:</label><br />
+      <input type="text" id="lnameInput" name="lname" /><br />
+      <label for="age">Age:</label><br />
+      <input type="number" id="ageInput" name="age" /><br />
+      <label for="email">Email:</label><br />
+      <input type="email" id="emaIlInput" name="email" /><br />
+      <button type="submit">Submit</button>
+    </form>
+
+      <div id="displayedData">
+        <h2>Data Saved</h2>
+        <p id="displayedFname"></p>
+        <p id="displayedLname"></p>
+        <p id="displayedEmail"></p>
+        <p id="displayedAge"></p>
+      </div>
+
+      <script>
+        // variable to store the values
+        let formData = {};
+
+        // catching the elements
+        let fnameInput = document.querySelector("#fnameInput");
+        let lnameInput = document.querySelector("#lnameInput");
+        let ageInput = document.querySelector("#ageInput");
+        let emailInput = document.querySelector("#emaIlInput");
+        let myForm = document.querySelector("#myForm");
+       
+
+        myForm.addEventListener("submit", function (e) {
+          
+          e.preventDefault();
+          displayFormData();
+        });
+
+        function displayFormData() {
+          let displayedFName = document.getElementById("displayedFname");
+          let displayedLName = document.getElementById("displayedLname");
+          let displayedAge = document.getElementById("displayedAge");
+          let displayedEmail = document.getElementById("displayedEmail");
+
+
+          displayedFName.innerText = "First Name :" + fnameInput.value;
+          displayedLName.innerText = "Last Name :" + lnameInput.value;
+          displayedAge.innerText = "age :" + ageInput.value;
+          console.log(emailInput);
+          displayedEmail.textContent = "email :" + emailInput.value;
+          fnameInput.value = fnameInput.value[0].toUpperCase() + fnameInput.value.slice(1).toLowerCase();
+        }
+      </script>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        width: 100%;
+        background-color: rgb(111, 150, 255);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .letter-to-guess {
+        margin: 15px 0;
+        font-size: 18px;
+        width: 30px;
+        height: 30px;
+        border: 1px solid black;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .wrong-right-message {
+        font-weight: 600;
+        margin: 30px 0;
+      }
+
+      .wrong {
+        color: red;
+      }
+
+      .right {
+        color: green;
+      }
+
+      .play-again-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin: 30px 0;
+        display: none;
+      }
+
+      .guess-right-letter {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Wellcome to Guess My Letter</h1>
+    <div class="letter-to-guess">?</div>
+    <h3 class="wrong-right-message">Guess a Letter</h3>
+    <div class="play-again-container">
+      <div class="play-again-message">Would you like to play again?</div>
+      <button>Yes</button>
+    </div>
+    <h2>Keys guessed</h2>
+    <p class="guesses"></p>
+    <script>
+      const letterToGuess = document.querySelector(".letter-to-guess");
+      const rightOrWrong = document.querySelector(".wrong-right-message");
+      const PlatAgainWindow = document.querySelector(".play-again-container");
+      const guesses = document.querySelector(".guesses");
+      const gresetButton = document.querySelector("button");
+
+      const ALL_CHARACTERS = "BCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let letterToFind = "";
+      let isGameWon = false;
+      let alreadyPickedLetters = [];
+
+      const getRandomChar = () => {
+        const charsLength = ALL_CHARACTERS.length;
+        return ALL_CHARACTERS.charAt(Math.floor(Math.random() * charsLength));
+      };
+
+      const winGame = () => {
+        rightOrWrong.textcontent = "Right Letter";
+        rightOrWrong.classList.remove("wrong");
+        rightOrWrong.classList.add("right");
+        PlatAgainWindow.style.display = "flex";
+        letterToGuess.textContent = letterToFind;
+        letterToGuess.classList.add("guess-right-letter");
+        isGameWon = true;
+      };
+
+      const WrongGuess = (key) => {
+        const letter = guesses.textContent;
+        rightOrWrong.classList.remove("right");
+        rightOrWrong.classList.add("wrong");
+        if (alreadyPickedLetters.includes(key)) {
+          rightOrWrong.textContent = `nope, Already guessed ${key}`;
+          return;
+        }
+        rightOrWrong.textContent = "nope, wrong letter";
+        alreadyPickedLetters.push(key);
+        if (letters === "") {
+          guesses.textContent = `${key}`;
+          return;
+        }
+        guesses.textContent = `${letters}, ${key}`;
+      };
+
+      const resetGame = () => {
+        letterToFind = getRandomChar();
+        rightOrWrong.classList.remove("wrong");
+        rightOrWrong.classList.remove("right");
+        playAgainWindow.style.display = "none";
+        letterToGuess.classList.remove("guess-right-letter");
+        rightOrWrong.textContent = "guess a letter";
+        guesses.textContent = "";
+        isGameWon = false;
+        alreadyPickedLetters = [];
+      };
+
+      letterToFind = getRandomChar();
+
+      resetButton.addeventLis;
+
+      resetGame();
+    </script>
+  </body>
+</html>
